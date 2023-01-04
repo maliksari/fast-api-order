@@ -3,11 +3,11 @@ version: '3.8'
 services:
   web:
     build: .
-    command: uvicorn app.main:app --host 0.0.0.0:8000 --reload
+    command: python main.py
     volumes:
       - .:/app/volumes_data
     ports:
-      - 8000:8000
+      - 8080:8080
     environment:
       - DATABASE_URL
       - HASH_CODE
@@ -22,7 +22,7 @@ services:
       - 5432
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=12345
+      - POSTGRES_PASSWORD=1905
       - POSTGRES_DB=fastapi_order_db
 
 volumes:

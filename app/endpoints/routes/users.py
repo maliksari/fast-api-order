@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from starlette import status
 from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List
 
 from app.schemas.request.users import UserCreate, UserUpdate
 from app.schemas.response.users import ResponseUser
@@ -14,7 +15,7 @@ router = APIRouter()
             tags=["Users"],
             summary="Kullanıcı listele....",
             response_description="Response ....",
-            response_model=list[ResponseUser], status_code=status.HTTP_200_OK)
+            response_model=List[ResponseUser], status_code=status.HTTP_200_OK)
 async def get_users(session: AsyncSession = Depends(get_session)):
     obj = UserRepository(session)
     users = await obj.get_users()
