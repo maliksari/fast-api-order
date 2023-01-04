@@ -455,4 +455,4 @@ $RECYCLE.BIN/
 
 setup.sh
 app/settings/local_conf.py
-migrations/versions/*.py
+/migrations/versions/*.py
