@@ -51,7 +51,7 @@ async def delete_a_user(user_id: int, db: AsyncSession = Depends(get_session)):
 @router.get("/{user_id}", tags=["Users"],
             summary="Detail User",
             response_description="Response ....", response_model=ResponseUser, status_code=status.HTTP_200_OK)
-async def get_user_id(user_id: int, db: AsyncSession = Depends(get_session)):
+async def get_user_by_id(user_id: int, db: AsyncSession = Depends(get_session)):
     obj = UserRepository(db)
     user = await obj.get_user_by_id(user_id)
     return user
