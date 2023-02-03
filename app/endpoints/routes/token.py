@@ -6,7 +6,7 @@ from sqlalchemy.future import select
 from app.schemas.request.login import LoginRequest
 from app.settings.database import get_session
 from app.endpoints.auths.auth_handler import verify_password, createJWT
-from app.models import User
+from app.models.users import User
 
 router = APIRouter()
 

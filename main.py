@@ -3,8 +3,7 @@
 import uvicorn
 
 
-
-from fastapi import FastAPI,APIRouter, Depends
+from fastapi import FastAPI, APIRouter, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.settings.config import settings
@@ -14,6 +13,7 @@ from app.endpoints.auths.auth_jwt import JWTBearer
 from app.endpoints.routes.users import router as users_router
 from app.endpoints.routes.token import router as token_router
 from app.endpoints.routes.test import router as test_router
+from app.endpoints.routes.category import router as category_router
 
 
 origins = [
@@ -40,11 +40,13 @@ app.add_middleware(
 )
 
 
-
 router = APIRouter()
 # Yeni routerları ekle
-router.include_router(users_router, prefix='/users', tags=["Users"])
+router.include_router(users_router, prefix='/users',
+                      tags=["Users"], dependencies=[Depends(JWTBearer())])
 router.include_router(token_router, prefix='/token', tags=["Token"])
+router.include_router(category_router, prefix="/category",
+                      tags=['Category'], dependencies=[Depends(JWTBearer())])
 router.include_router(test_router, prefix='/test',
                       tags=["Test"], dependencies=[Depends(JWTBearer())])
 

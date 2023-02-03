@@ -9,7 +9,11 @@ from sqlmodel import SQLModel
 
 from alembic import context
 
+from app.models.base import BaseModel
 from app.models import *
+# from app.models.product import Product,CategoryProduct
+# from app.models.test import Test
+# from app.models.users import User
 # from app.models.users import User
 
 # this is the Alembic Config object, which provides

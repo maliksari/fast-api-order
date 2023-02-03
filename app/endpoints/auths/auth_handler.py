@@ -1,5 +1,5 @@
 import jwt
-from time import perf_counter as tick
+import time
 
 from typing import Dict
 from fastapi import Request, HTTPException
@@ -25,7 +25,7 @@ def decodeJWT(token: str) -> dict:
     try:
         decoded_token = jwt.decode(
             token, settings.HASH_CODE, algorithms=[JWT_ALGORITHM])
-        return decoded_token if decoded_token["exp"] >= tick() else None
+        return decoded_token if decoded_token["exp"] >= time.time() else None
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail='Expired signature')
     except jwt.InvalidTokenError:
@@ -42,8 +42,8 @@ async def get_token_data(request: Request):
 def signJWT() -> Dict[str, str]:
     token_model = TokenModel(
         user_id=None,
-        exp=tick() + expire_at,
-        iat=tick(),
+        exp=time.time() + expire_at,
+        iat=time.time(),
     )
     token = jwt.encode(token_model.__dict__,
                        settings.hash_code, algorithm=JWT_ALGORITHM)
@@ -53,8 +53,8 @@ def signJWT() -> Dict[str, str]:
 def createJWT(user_id: any) -> Dict[str, str]:
     token_model = TokenModel(
         user_id=user_id,
-        exp=tick() + expire_at,
-        iat=tick(),
+        exp=time.time() + expire_at,
+        iat=time.time(),
     )
     token = jwt.encode(token_model.__dict__,
                        settings.HASH_CODE, algorithm=JWT_ALGORITHM)
