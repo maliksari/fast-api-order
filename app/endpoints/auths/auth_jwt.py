@@ -24,14 +24,13 @@ class JWTBearer(HTTPBearer):
 
     def verify_jwt(self, jwtoken: str) -> bool:
         is_token_valid: bool = False
-        try:
-            payload = decodeJWT(jwtoken)
-        except:
-            payload = None
-
+        payload = decodeJWT(jwtoken)
         if payload:
             is_token_valid = True
-        return is_token_valid
+            return is_token_valid
+        else:
+            is_token_valid = False
+            return is_token_valid
 
 
 async def get_token_data(request: Request):

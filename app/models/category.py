@@ -11,4 +11,4 @@ class Category(BaseModel, table=True):
     category_code: str = Field(max_length=150, nullable=False, unique=True)
     list_order: int = None
     products: List[Product] = Relationship(
-        back_populates='products', link_model=CategoryProduct)
+        back_populates='categories', link_model=CategoryProduct)

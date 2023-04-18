@@ -14,6 +14,7 @@ from app.endpoints.routes.users import router as users_router
 from app.endpoints.routes.token import router as token_router
 from app.endpoints.routes.test import router as test_router
 from app.endpoints.routes.category import router as category_router
+from app.endpoints.routes.product import router as product_router
 
 
 origins = [
@@ -44,11 +45,17 @@ router = APIRouter()
 # Yeni routerları ekle
 router.include_router(users_router, prefix='/users',
                       tags=["Users"], dependencies=[Depends(JWTBearer())])
-router.include_router(token_router, prefix='/token', tags=["Token"])
+
+
 router.include_router(category_router, prefix="/category",
                       tags=['Category'], dependencies=[Depends(JWTBearer())])
+
+router.include_router(product_router, prefix='/product',
+                      tags=["Product"], dependencies=[Depends(JWTBearer())])
 router.include_router(test_router, prefix='/test',
                       tags=["Test"], dependencies=[Depends(JWTBearer())])
+router.include_router(token_router, prefix='/token', tags=["Token"])
+
 
 # bütün routerlara dependencies ekle
 # app.include_router(api_router,dependencies=[Depends(JWTBearer())])

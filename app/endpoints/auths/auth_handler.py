@@ -46,7 +46,7 @@ def signJWT() -> Dict[str, str]:
         iat=time.time(),
     )
     token = jwt.encode(token_model.__dict__,
-                       settings.hash_code, algorithm=JWT_ALGORITHM)
+                       settings.HASH_CODE, algorithm=JWT_ALGORITHM)
     return token_response(token)
 
 

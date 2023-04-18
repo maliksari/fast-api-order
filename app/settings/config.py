@@ -12,8 +12,7 @@ class Settings(BaseSettings):
         DATABASE_URL, env='DATABASE_CONNECTION_STR')
     HASH_CODE: Optional[str] = Field(
         HASH_CODE, env='HASH_CODE')
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * \
-        1  # 60 minutes * 24 hours * 1 days = 1 days
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 *8  # 60 minutes * 24 hours * 1 days = 1 days
     PROJECT_NAME: str = "Fast API Order"
     PROJECT_DESCRIPTION: str = "Proje bilgileri"
     PROJECT_VERSION: str = "0.0.1"
