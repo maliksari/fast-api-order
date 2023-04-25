@@ -9,6 +9,10 @@ RUN apt-get update \
     && apt-get -y install libpq-dev gcc musl-dev libffi-dev g++ \
     && pip install psycopg2
 
+RUN apt-get update && \
+    apt-get install -y postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
+
 
 COPY requirements.txt .
 RUN pip install --upgrade pip

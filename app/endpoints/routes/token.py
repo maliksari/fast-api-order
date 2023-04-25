@@ -11,7 +11,7 @@ from app.models.users import User
 router = APIRouter()
 
 
-@router.post("/login",
+@router.post("/",
              tags=["Token"],
              summary="Access token",
              response_description="Response ....",
