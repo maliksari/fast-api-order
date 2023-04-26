@@ -4,7 +4,7 @@ services:
   web:
     container_name: order_api
     build: .
-    command: alembic revision --autogenerate -m "init" && alembic upgrade head && python main.py
+    command: python main.py
     volumes:
       - .:/app/volumes_data
     ports:

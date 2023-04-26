@@ -3,6 +3,8 @@ from starlette import status
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
+from app.endpoints.auths.auth_jwt import JWTBearer
+
 from app.schemas.request.users import UserCreate, UserUpdate
 from app.schemas.response.users import ResponseUser
 from app.settings.database import get_session

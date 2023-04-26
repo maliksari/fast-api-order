@@ -22,5 +22,6 @@ async def get_session() -> AsyncSession:
     async_session = sessionmaker(
         engine, class_=AsyncSession, expire_on_commit=False
     )
-    async with async_session() as session:
-        yield session
+    async with engine.connect() as conn:
+        async with async_session(bind=conn) as session:
+            yield session

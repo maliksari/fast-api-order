@@ -43,8 +43,9 @@ app.add_middleware(
 
 router = APIRouter()
 # Yeni routerları ekle
+
 router.include_router(users_router, prefix='/users',
-                      tags=["Users"], dependencies=[Depends(JWTBearer())])
+                      tags=["Users"])
 
 
 router.include_router(category_router, prefix="/category",

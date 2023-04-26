@@ -30,7 +30,7 @@ class UserRepository:
         users = result.scalars().all()
         return users
 
-    async def create_user(self, user: User) -> User:
+    async def  (self, user: User) -> User:
         result = await self.db.execute(select(User))
         users = result.scalars().all()
 
