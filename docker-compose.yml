@@ -13,7 +13,7 @@ services:
       - order-network
     depends_on:
       - db
-    restart: always
+   
   
   db:
     image: postgres:13-alpine
@@ -30,7 +30,7 @@ services:
       - "5432:5432"
     networks:
       - order-network
-    restart: always
+   
 
 volumes:
   postgres_data:

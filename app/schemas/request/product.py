@@ -7,4 +7,4 @@ class ProductRequest(BaseModel):
     price: Optional[float]
     description: str
     list_order: int
-    categories: Optional[List]
+    # categories: Optional[List]

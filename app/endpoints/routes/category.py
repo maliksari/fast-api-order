@@ -69,7 +69,7 @@ async def update(category_id: int, category: CategoryRequest, db: AsyncSession =
 
 @router.delete("/{category_id}",
                tags=["Category"],
-               response_description="Update",
+               response_description="Deleted category",
                response_model=CategoryResponse,
                status_code=status.HTTP_200_OK)
 async def deleted(category_id: int, db: AsyncSession = Depends(get_session)):
