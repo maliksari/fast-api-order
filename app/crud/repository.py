@@ -1,6 +1,5 @@
 from sqlmodel import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 from fastapi import HTTPException
 from starlette import status
 from datetime import datetime

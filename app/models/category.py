@@ -12,3 +12,4 @@ class Category(BaseModel, table=True):
     list_order: int = None
     products: List[Product] = Relationship(
         back_populates='categories', link_model=CategoryProduct)
+

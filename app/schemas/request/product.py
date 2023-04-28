@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional,List
+from typing import Optional
+
 
 class ProductRequest(BaseModel):
     name: str
@@ -7,4 +8,4 @@ class ProductRequest(BaseModel):
     price: Optional[float]
     description: str
     list_order: int
-    # categories: Optional[List]
+

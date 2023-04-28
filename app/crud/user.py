@@ -1,5 +1,5 @@
-from sqlmodel import  select
-from fastapi import  HTTPException, status
+from sqlmodel import select
+from fastapi import HTTPException, status
 from datetime import datetime
 from typing import List, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -7,7 +7,6 @@ from starlette.responses import JSONResponse
 
 from app.schemas.request.users import UserUpdate
 from app.models.users import User
-# from app.crud.repository import Repository
 from app.endpoints.auths.auth_handler import get_password_hash
 
 
@@ -30,7 +29,7 @@ class UserRepository:
         users = result.scalars().all()
         return users
 
-    async def  register(self, user: User) -> User:
+    async def create_user(self, user: User) -> User:
         result = await self.db.execute(select(User))
         users = result.scalars().all()
 

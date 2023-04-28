@@ -1,9 +1,7 @@
 from typing import Any, List, Optional
-
 from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 from app.models.product import Product, CategoryProduct
 from app.crud.product import ProductRepository
@@ -49,10 +47,11 @@ async def create_product(product: ProductRequest, categories: Optional[List[int]
     result = await prod.create(product, created_by_id)
 
     if not categories:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="categories boş birakilamaz !!!")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="categories boş birakilamaz !!!")
     try:
         for i in categories:
-           
+
             obj = CategoryProduct(product_id=result.id, category_id=i)
             db.add(obj)
             await db.commit()
