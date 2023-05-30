@@ -6,7 +6,7 @@ from .base import BaseModel
 from .product import CategoryProduct
 
 
-class Category(BaseModel, table=True):
+class Category(BaseModel):
     name: str = Field(max_length=150, nullable=False, index=True)
     category_code: str = Field(max_length=150, nullable=False, unique=True)
     list_order: int = None

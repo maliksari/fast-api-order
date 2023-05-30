@@ -24,4 +24,3 @@ class User(SQLModel, table=True):
     modified_at: Optional[datetime] = Field(nullable=True,
                                             sa_column=Column(
                                                 DateTime(timezone=True), onupdate=func.now()))
-

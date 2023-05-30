@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Bu modül, FastAPI uygulamasını yapılandırır ve çalıştırır.
+"""
 import uvicorn
 
 

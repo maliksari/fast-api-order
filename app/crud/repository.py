@@ -30,7 +30,7 @@ class BaseRepository:
             )
 
     async def get_all(self):
-        query = await self.db.execute(select(self.model))
+        query = await self.db.execute(select(self.model.__table__))
         result = query.scalars().all()
         return result
 

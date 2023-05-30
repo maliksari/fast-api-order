@@ -5,9 +5,9 @@ from sqlalchemy.sql import func
 from sqlalchemy import Column, DateTime
 
 
-class BaseModel(SQLModel):
+class BaseModel(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True, nullable=False)
-    is_active: bool = True
+    is_active: bool = Field(default=True)
     created_at:  Optional[datetime] = Field(
         sa_column=Column(DateTime(timezone=True), server_default=func.now())
     )
