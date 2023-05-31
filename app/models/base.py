@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 from sqlalchemy import Column, DateTime
 
 
-class BaseModel(SQLModel, table=True):
+class BaseModel(SQLModel):
     id: Optional[int] = Field(default=None, primary_key=True, nullable=False)
     is_active: bool = Field(default=True)
     created_at:  Optional[datetime] = Field(

@@ -30,12 +30,16 @@ class BaseRepository:
             )
 
     async def get_all(self):
-        query = await self.db.execute(select(self.model.__table__))
+        query = await self.db.execute(select(self.model))
         result = query.scalars().all()
         return result
 
     async def get_by_id(self, id):
         result = await self.db.get(self.model, id)
+        if not result:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"{self.model.__name__} not found with id: {id}")
         return result
 
     async def update(self, instance, id, modified_by_id):

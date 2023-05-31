@@ -19,6 +19,7 @@ from app.endpoints.routes.test import router as test_router
 from app.endpoints.routes.category import router as category_router
 from app.endpoints.routes.product import router as product_router
 from app.endpoints.routes.category_product import router as category_product_router
+from app.endpoints.routes.cart import router as cart_router
 
 
 origins = [
@@ -65,6 +66,8 @@ router.include_router(category_product_router, prefix="/categories",
 
 router.include_router(product_router, prefix='/product',
                       tags=["Product"], dependencies=[Depends(JWTBearer())])
+router.include_router(cart_router, prefix='/cart',
+                      tags=["Cart"], dependencies=[Depends(JWTBearer())])
 
 router.include_router(test_router, prefix='/test',
                       tags=["Test"], dependencies=[Depends(JWTBearer())])

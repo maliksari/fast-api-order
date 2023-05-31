@@ -8,4 +8,4 @@ class ProductRequest(BaseModel):
     price: Optional[float]
     description: str
     list_order: int
-
+    stock_amount: int
