@@ -2,7 +2,7 @@ from typing import Any, List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlmodel import Field, Session, SQLModel, create_engine, select, desc
+from sqlmodel import select, desc
 
 from app.endpoints.auths.auth_handler import get_token_data
 from app.settings.database import get_session
@@ -24,9 +24,9 @@ async def add_to_cart(req: List[CartRequest], db: AsyncSession = Depends(get_ses
         Cart.is_completed == False).where(Cart.is_active == True).order_by(desc(Cart.created_at))
 
     cart = await db.execute(query)
-    cart = cart.fetchone()
+    cart = cart.fetchone()[0]
 
-    cart_id = cart[0].id
+    # cart_id = cart[0].id
     # print("*****", cart_id)
 
     if cart is None:
@@ -35,8 +35,8 @@ async def add_to_cart(req: List[CartRequest], db: AsyncSession = Depends(get_ses
         db.add(cart)
         await db.commit()
         await db.refresh(cart)
-        cart_id = cart.id
-        # print("*-*-*-*-*-*-", cart.id)
+    
+    print("*-*-*-*-*-*-", cart.id)
     total_price=0
     for i in req:
         product_query = select(Product).where(Product.id == i.product_id)
